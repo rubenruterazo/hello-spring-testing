@@ -4,9 +4,9 @@ pipeline {
     options {
         ansiColor('xterm')
     }
-    tools {
+    //tools {
         //jdk 'OpenJDK-15.0.2'
-    }
+    //}
     stages {
         stage('Build') {
             steps {
