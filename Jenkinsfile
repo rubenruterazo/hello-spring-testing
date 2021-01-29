@@ -10,13 +10,27 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                //git url:'http://10.250.15.2:8929/root/hello-spring-testing', branch:'master'
-                sh './gradlew assemble'
+                withGradle{
+                    //git url:'http://10.250.15.2:8929/root/hello-spring-testing', branch:'master'
+                    sh './gradlew assemble'
+                } 
+            }
+            post {
+                success {
+                    archiveArtifacts 'build/libs/*.jar'
+                }
             }
         }
         stage('Test') {
             steps {
-                sh './gradlew test'
+                withGradle{
+                    sh './gradlew clean test'
+                }  
+            }
+            post {
+                always {
+                    junit 'build/test-results/test/TEST-*.xml'
+                }
             }
         }
     }
