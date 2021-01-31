@@ -34,7 +34,7 @@ pipeline {
                         execPattern: 'build/*',
                         classPattern: 'build/classes',
                         sourcePattern: 'src/main/java',
-                        //exclusionPattern: 'src/test*'
+                        exclusionPattern: 'src/test*'
                     )
                 }
             }
