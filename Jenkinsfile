@@ -31,7 +31,7 @@ pipeline {
                 always {
                     junit 'build/test-results/test/TEST-*.xml'
                     jacoco( 
-                        execPattern: 'build/*',
+                        execPattern: 'build/*.exec',
                         classPattern: 'build/classes',
                         sourcePattern: 'src/main/java',
                         exclusionPattern: 'src/test*'
