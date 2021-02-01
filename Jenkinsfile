@@ -32,7 +32,7 @@ pipeline {
             post {
                 always {
                     junit 'build/test-results/test/TEST-*.xml'
-                    pitmutation killRatioMustImprove: false, minimumKillRatio: 50.0, mutationStatsFile: '**/build/reports/pitest/*/'
+                    pitmutation killRatioMustImprove: false, minimumKillRatio: 50.0, mutationStatsFile: '**/build/reports/pitest/**/'
                     //'build/reports/pitest/*/'
                 }
             }
