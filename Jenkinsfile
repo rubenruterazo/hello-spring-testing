@@ -24,6 +24,8 @@ pipeline {
         stage('Test') {
             steps {
                 withGradle{
+                    sh 'ls build/'
+                    sh 'ls build/jacoco/'
                     sh './gradlew clean test'
                 }  
             }
