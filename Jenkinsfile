@@ -27,8 +27,6 @@ pipeline {
                 withGradle{
                     sh './gradlew clean test'
                     sh './gradlew pitest'
-                    sh 'ls build/'
-                    sh 'ls build/jacoco/'
                 }  
             }
             post {
