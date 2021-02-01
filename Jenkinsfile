@@ -26,6 +26,7 @@ pipeline {
             steps {
                 withGradle{
                     sh './gradlew clean test'
+                    sh './gradlew pitest'
                     sh 'ls build/'
                     sh 'ls build/jacoco/'
                 }  
@@ -33,11 +34,10 @@ pipeline {
             post {
                 always {
                     junit 'build/test-results/test/TEST-*.xml'
-                    jacoco( 
-                        execPattern: 'build/*/*.exec',
-                        classPattern: 'build/classes',
-                        sourcePattern: 'src/main/java',
-                        exclusionPattern: 'src/test*'
+                    step(
+                        pitmutation killRatioMustImprove: false,
+                        minimumKillRatio: 50.0,
+                        mutationStatsFile: 'build/reports/pitest/**/index.html'
                     )
                 }
             }
