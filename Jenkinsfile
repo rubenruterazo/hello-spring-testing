@@ -13,12 +13,7 @@ pipeline {
                 withGradle{
                     //git url:'http://10.250.15.2:8929/root/hello-spring-testing', branch:'master'
                     sh './gradlew assemble'
-                    jacoco( 
-                        execPattern: 'build/jacoco/*.exec',
-                        classPattern: 'build/classes',
-                        sourcePattern: 'src/main/java',
-                        exclusionPattern: 'src/test*'
-                    )
+                    
                 } 
             }
             post {
@@ -38,7 +33,12 @@ pipeline {
             post {
                 always {
                     junit 'build/test-results/test/TEST-*.xml'
-                    
+                    jacoco( 
+                        execPattern: 'build/jacoco/*.exec',
+                        classPattern: 'build/classes',
+                        sourcePattern: 'src/main/java',
+                        exclusionPattern: 'src/test*'
+                    )
                 }
             }
         }
