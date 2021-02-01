@@ -32,7 +32,7 @@ pipeline {
             post {
                 always {
                     junit 'build/test-results/test/TEST-*.xml'
-                    pitest 'build/reports/pitest/*/'
+                    pitmutation 'build/reports/pitest/*/'
                 }
             }
         }
