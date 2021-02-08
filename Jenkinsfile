@@ -22,22 +22,7 @@ pipeline {
                 }
             }
         }
-       /* stage('Test') {
-            steps {
-                withGradle{
-                    sh './gradlew clean test'
-                    sh './gradlew pitest'
-                }  
-            }
-            post {
-                always {
-                    junit 'build/test-results/test/TEST-*.xml'
-                    pitmutation killRatioMustImprove: false, minimumKillRatio: 50.0, mutationStatsFile: '**/build/reports/pitest/*'
 
-                }
-            }
-        }
-*/
         stage('Check') {
             steps {
                 withGradle{
