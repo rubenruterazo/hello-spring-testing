@@ -20,6 +20,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.10.1'
 }
 
 test {
@@ -37,6 +38,11 @@ pitest {
 
 
 spotbugs {
+	toolVersion = '4.2.1'
+}
+spotbugsTest{
 	ignoreFailures = true
-
+}
+spotbugsMain{
+	ignoreFailures = true
 }
