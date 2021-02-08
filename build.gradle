@@ -38,6 +38,5 @@ pitest {
 
 
 spotbugs {
-	toolVersion = '4.2.1'
 	ignoreFailures = true
 }
