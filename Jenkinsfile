@@ -41,6 +41,11 @@ pipeline {
             steps {
                 withGradle{
                     sh './gradlew check'
+                    configFileProvider(
+                            [configFile(fileId: 'sonarqube-gradle-properties', targetLocation: 'gradle.properties')]) {
+                                sh './gradlew sonarqube'
+                    }
+
                 }
             }
             post {
