@@ -4,7 +4,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id 'info.solidsoft.pitest' version '1.5.1'
-	id 'pmd'
+	id "com.github.spotbugs" version "4.6.0"
 }
 
 group = 'com.example'
@@ -20,6 +20,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.10.1'
 }
 
 test {
@@ -34,9 +35,9 @@ pitest {
 	// ...
 }
 
-pmd {
-	consoleOutput = true
-	toolVersion ="6.21.0"
+
+
+spotbugs {
+	toolVersion = '4.2.1'
 	ignoreFailures = true
-	ruleSets = ["category/java/errorprone.xml", "category/java/bestpractices.xml"]
 }
