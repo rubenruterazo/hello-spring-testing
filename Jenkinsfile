@@ -47,7 +47,7 @@ pipeline {
                 always {
                     recordIssues(
                             enabledForFailure: true,
-                            tools: [java(), spotBugs(canRunOnFailed: true, pattern: 'build/reports/spotbugs/*.xml', reportEncoding: 'UTF-8')]
+                            tools: [java(), spotBugs( pattern: 'build/reports/spotbugs/*.xml', reportEncoding: 'UTF-8')]
                     )
                 }
             }
