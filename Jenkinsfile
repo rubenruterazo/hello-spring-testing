@@ -47,7 +47,7 @@ pipeline {
                 always {
                     recordIssues(
                             enabledForFailure: true, aggregatingResults: true,
-                            tools: [java(), checkStyle(pattern: 'build/reports/pmd/*.xml', reportEncoding: 'UTF-8')]
+                            tools: [java(), pmd(pattern: 'build/reports/pmd/*.xml', reportEncoding: 'UTF-8')]
                     )
                 }
             }
