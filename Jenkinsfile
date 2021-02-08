@@ -37,5 +37,21 @@ pipeline {
                 }
             }
         }
+        stage('Check') {
+            steps {
+                withGradle{
+                    sh './gradlew check'
+                }
+            }
+            post {
+                always {
+                    recordIssues(
+                            enabledForFailure: true, aggregatingResults: true,
+                            tools: [java(), checkStyle(pattern: 'build/reports/pmd/*.xml', reportEncoding: 'UTF-8')]
+                    )
+                }
+            }
+        }
+
     }
 }
