@@ -24,7 +24,8 @@ pipeline {
                 success {
                     archiveArtifacts 'build/libs/*.jar'
                     //7db4ace2-21cf-42f8-8d18-7fb8f3b04110
-                    withCredentials([string(credentialsId: '7db4ace2-21cf-42f8-8d18-7fb8f3b04110', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    withCredentials([string(credentialsId: '7db4ace2-21cf-42f8-8d18-7fb8f3b04110', usernameVariable: 'USER')
+                                     ,string(credentialsId: '7db4ace2-21cf-42f8-8d18-7fb8f3b04110',passwordVariable: 'PASS')]) {
                         withGradle{
                             sh './gradlew publish'
                         }
