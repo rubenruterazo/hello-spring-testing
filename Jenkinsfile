@@ -23,7 +23,8 @@ pipeline {
             post {
                 success {
                     archiveArtifacts 'build/libs/*.jar'
-                    withCredentials([string(credentialsId: 'gitLabPrivateToken', variable: 'TOKEN')]) {
+                    //7db4ace2-21cf-42f8-8d18-7fb8f3b04110
+                    withCredentials([string(credentialsId: 'gitLabPrivateToken', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                         withGradle{
                             sh './gradlew publish'
                         }
