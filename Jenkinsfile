@@ -25,7 +25,7 @@ pipeline {
                     archiveArtifacts 'build/libs/*.jar'
                     withCredentials([string(credentialsId: 'gitLabPrivateToken', variable: 'TOKEN')]) {
                         withGradle{
-                            sh './gradlew publish -PTOKEN=$TOKEN'
+                            sh './gradlew publish'
                         }
                     }
                 }
