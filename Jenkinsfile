@@ -10,23 +10,7 @@ pipeline {
     stages {
 
 
-        stage('DependencyCheck') {
-            steps {
-                withGradle{
-                    sh './gradlew dependencyCheckAnalyze'
-                    /*configFileProvider(
-                            [configFile(fileId: 'sonarqube-gradle-properties', targetLocation: 'gradle.properties')]) {
-                                sh './gradlew sonarqube'
-                    }*/
 
-                }
-            }
-            post {
-                always {
-                    dependencyCheckPublisher pattern: 'build/reports/*.xml'
-                }
-            }
-        }
 
         stage('Build') {
             steps {
@@ -41,7 +25,7 @@ pipeline {
                     archiveArtifacts 'build/libs/*.jar'
                     withCredentials([string(credentialsId: 'gitLabPrivateToken', variable: 'TOKEN')]) {
                         withGradle{
-                            sh './gradlew publish PTOKEN=$TOKEN'
+                            sh './gradlew publish -PTOKEN=$TOKEN'
                         }
                     }
                 }
