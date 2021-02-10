@@ -28,11 +28,10 @@ publishing {
 	}
 	repositories {
 		maven {
-			url "http://localhost:9082/repository/snapshots"
-			name "Archiva"
+			url "http://localhost:9084/repository/maven-snapshots/"
 			credentials {
-				username = System.getenv('USER');
-				password = System.getenv('PASS');
+				username = 'admin'//System.getenv('USER');
+				password = 'sinensia15'//System.getenv('PASS');
 			}
 
 		}
