@@ -6,6 +6,7 @@ plugins {
 	id "com.github.spotbugs" version "4.6.0"
 	id "org.sonarqube" version "3.1.1"
 	id "org.owasp.dependencycheck" version"6.1.0"
+	id 'maven-publish'
 }
 
 group = 'com.example'
@@ -15,8 +16,30 @@ sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
+
 }
 
+publishing {
+	publications{
+		bootJava(MavenPublication){
+			artifact bootJar
+		}
+	}
+	repositories {
+		maven {
+			url "http://10.250.15.2:8929/api/v4/projects/5/packages/maven"
+			name "GitLab"
+			credentials(HttpHeaderCredentials) {
+				name = 'Private-Token'
+				value = gitLabPrivateToken
+			}
+			authentication {
+				header(HttpHeaderAuthentication)
+			}
+		}
+	}
+
+}
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
